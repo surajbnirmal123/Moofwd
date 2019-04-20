@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Moofwd</string>
+
+    <string name="welcome">WELCOME</string>
+    <string name="welcomeString">Moofwd’s eXPLORE, eXPERIENCE, and eXTEND gives you the tools to recruit, retain, and engage your future, current and past students. Our custom built app enables you to build community an stay connected.
+
+ </string>
+
+    <string name="getStarted">GET STARTED</string>
+    <string name="welcometoMooFwd">WELCOME TO MOOFWD</string>
+
+    <string name="profile">Profile</string>
+    <string name="contacts">CONTACTS</string>
+    <string name="subjects">SUBJECTS</string>
+    <string name="info">+Info</string>
+    <string name="dni">DNI:</string>
+    <string name="career">Career:</string>
+    <string name="campus">Campus:</string>
+    <string name="address">Address:</string>
+    <string name="city">City:</string>
+</resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Dashboard.DashboardActivity">
+
+        <RelativeLayout
+            android:id="@+id/Dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/moofwd_background">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/moofwd_logo" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ThreeCircleHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/moofwd_profile" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/subjects"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/moofwd_subjects" />
+
+                    <ImageView
+                        android:id="@+id/contacts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/moofwd_contacts" />
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/welcometoMoofwd"
+                style="@style/welcomeToMoofwd"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/ThreeCircleHolder"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="90dp"
+                fancy:fb_borderColor="@color/orange"
+                fancy:fb_borderWidth="0.5dp"
+                fancy:fb_defaultColor="@color/orange"
+                fancy:fb_focusColor="@color/orange"
+                fancy:fb_text="@string/welcometoMooFwd" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

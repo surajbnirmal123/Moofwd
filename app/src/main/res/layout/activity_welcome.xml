@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Welcome.WelcomeActivity">
+
+        <RelativeLayout
+            android:id="@+id/WelcomeScreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/moofwd_background">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/moofwd_logo" />
+
+            <RelativeLayout
+                android:id="@+id/circleHolder"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/transparent_circular">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/welcomeString"
+                    style="@style/welcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="60dp"
+                    android:text="@string/welcome" />
+
+                <View
+                    android:id="@+id/viewData"
+                    android:layout_width="200dp"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/welcomeString"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/welcomeMessage"
+                    style="@style/moofwdsEXploreEX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/viewData"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:gravity="center"
+                    android:text="@string/welcomeString" />
+
+            </RelativeLayout>
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/getStartedBTN"
+                style="@style/getStarted"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/circleHolder"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                fancy:fb_borderColor="@color/Gray"
+                fancy:fb_borderWidth="0.5dp"
+                fancy:fb_defaultColor="@color/orange"
+                fancy:fb_focusColor="@color/focusColor"
+                fancy:fb_text="@string/getStarted" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>
