@@ -8,6 +8,7 @@
 
     <string name="getStarted">GET STARTED</string>
     <string name="welcometoMooFwd">WELCOME TO MOOFWD</string>
+    <string name="message_click_back_again">Please click BACK again to exit</string>
 
     <string name="profile">Profile</string>
     <string name="contacts">CONTACTS</string>
