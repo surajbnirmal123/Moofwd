@@ -25,29 +25,8 @@ public interface Constants {
     //TODO getProfile
     String getProfile = "http://54.94.179.75:3000/moofwd/users/james@moofwd.com";
 
-    //TODO getLiveApi
-    String getLiveApi = "https://www.vasaibirds.com/motorbuddy/service_live.php";
-
-    //TODO Facebook Link
-    String getFacebookLink = "https://www.facebook.com/MotorBuddyIn";
-
-    //TODO Youtube Link
-    String getYoutubeLink = "https://www.youtube.com/channel/UCQG9doH5eIZg2s3Eb4yqhtw";
-
-    //TODO Twitter Link
-    String getTwitterLink = "https://twitter.com/MotorBuddy";
-
-    //TODO getPrivacyPolicyLink
-    String getPrivacyPolicyLink = "https://www.vasaibirds.com/motorbuddy/privacy_policy.html";
-
-    //TODO getWarrantyLink
-    String getWarrantyLink = "https://www.vasaibirds.com/motorbuddy/warranty.html";
-
-    //TODO getDealerLoginLink
-    String getDealerLoginLink = "https://www.vasaibirds.com/motorbuddy/login.php";
-
-    //TODO getCheckListPDFLink
-    String getCheckListPDFLink = "https://www.vasaibirds.com/motorbuddy/upload_files/checklist/checklist.pdf";
+    //TODO getContacts
+    String getContacts = "http://54.94.179.75:3000/moofwd/contacts";
 
     //TODO getMobileNo
     String getMobileNo = "+919665997663";
