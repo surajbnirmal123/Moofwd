@@ -24,11 +24,13 @@
         </activity>
         <activity
             android:name=".Dashboard.DashboardActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
             android:name=".Welcome.WelcomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.gun0912.tedpermission.TedPermissionActivity"

@@ -5,13 +5,13 @@ import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
+import androidx.multidex.MultiDex;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-
-import androidx.multidex.MultiDex;
 
 /**
  * Created by Suraj Nirmal
@@ -24,8 +24,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         mInstance = this;
-        //MultiDex.install(this);
         initFresco();
     }
 
@@ -39,6 +39,7 @@ public class MyApplication extends Application {
         ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
         ImagePipelineConfig imagePipelineConfig = ImagePipelineConfig
                 .newBuilder(getApplicationContext())
+                //.setDownsampleEnabled(true)
                 .setBitmapMemoryCacheParamsSupplier(new LollipopBitmapMemoryCacheParamsSupplier(activityManager))
                 .build();
 
@@ -58,8 +59,6 @@ public class MyApplication extends Application {
     public <T> void addRequestToQueue(Request<T> requestQueue, String tag) {
         requestQueue.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
         getRequestQueue().add(requestQueue);
-
-
     }
 
     public <T> void addRequestToQueue(Request<T> requestQueue) {

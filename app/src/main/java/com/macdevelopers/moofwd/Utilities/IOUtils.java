@@ -1,14 +1,16 @@
 package com.macdevelopers.moofwd.Utilities;
 
 import android.app.ActivityManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.ImageDecoder;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -24,7 +26,6 @@ import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.imagepipeline.image.ImageInfo;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,8 +35,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
-
-import androidx.annotation.Nullable;
 
 /**
  * Created by Suraj Nirmal
@@ -143,7 +142,6 @@ public class IOUtils {
             @Override
             public void onResponse(String response) {
                 //MyLog.d("Response", response.toString());
-
                 callback.onSuccess(response);
 
             }
@@ -264,30 +262,18 @@ public class IOUtils {
         return str;
     }
 
-    public static void openSocialMediaLink(Context context, String link) {
-
-        try {
-            Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-            context.startActivity(myIntent);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(context, "No application can handle this request."
-                    + " Please install a web browser", Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
-    }
-
     public static DraweeController getFrescoImageController(Context context, String url/*, final ProgressBar progressBar*/) {
 
-        ControllerListener controllerListener = new BaseControllerListener<ImageInfo>() {
+        ControllerListener controllerListener = new BaseControllerListener<ImageDecoder.ImageInfo>() {
             @Override
             public void onFinalImageSet(
                     String id,
-                    @Nullable ImageInfo imageInfo,
+                    @Nullable ImageDecoder.ImageInfo imageInfo,
                     @Nullable Animatable anim) {
             }
 
             @Override
-            public void onIntermediateImageSet(String id, @Nullable ImageInfo imageInfo) {
+            public void onIntermediateImageSet(String id, @Nullable ImageDecoder.ImageInfo imageInfo) {
 
             }
 

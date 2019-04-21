@@ -22,6 +22,9 @@ public interface Constants {
     // A fast frequency ceiling in milliseconds
     public static final long FASTEST_INTERVAL = MILLISECONDS_PER_SECOND * FASTEST_INTERVAL_IN_SECONDS;
 
+    //TODO getProfile
+    String getProfile = "http://54.94.179.75:3000/moofwd/users/james@moofwd.com";
+
     //TODO getLiveApi
     String getLiveApi = "https://www.vasaibirds.com/motorbuddy/service_live.php";
 

@@ -19,4 +19,8 @@
     <string name="campus">Campus:</string>
     <string name="address">Address:</string>
     <string name="city">City:</string>
+    <string name="error_message_no_internet">No internet connection!</string>
+    <string name="settings">SETTINGS</string>
+    <string name="error_no_record">No Record Found!</string>
+    <string name="fetching_data">Fetching data....</string>
 </resources>
