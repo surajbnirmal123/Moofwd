@@ -165,13 +165,9 @@ public class ProfileActivity extends AppCompatActivity implements NetworkUtilsRe
 
                 if (getResources().getDisplayMetrics().widthPixels > getResources().getDisplayMetrics().heightPixels) {
 
-                    Toast.makeText(this, "Screen switched to Landscape mode", Toast.LENGTH_SHORT).show();
-
                     displayProfileDataLandMode(profilePOJO);
 
                 } else {
-
-                    Toast.makeText(this, "Screen switched to Portrait mode", Toast.LENGTH_SHORT).show();
 
                     displayProfileDataPortMode(profilePOJO);
                 }
@@ -205,15 +201,18 @@ public class ProfileActivity extends AppCompatActivity implements NetworkUtilsRe
             activityProfileBinding.campus.setText(detail.getCampus());
             activityProfileBinding.city.setText(detail.getCity());
             activityProfileBinding.address.setText(detail.getAddress());
-            //activityProfileBinding.codeBar.setText(String.valueOf(detail.getCodebar()));
             String imageUrl = detail.getImage().toString();
 
-            MyLog.d("IMAGEURL#$#$#$#$#$", imageUrl);
+            String[] parts = imageUrl.split(":");
+            String part1 = parts[0];
+            String part2 = parts[1];
 
-            Uri uri = Uri.parse("https://webdev.php.mooestro.com/assets/img/james.png");
-            //Uri uri = Uri.parse(imageUrl);
+            MyLog.d("IMAGEURL#$#$#$#$#$", "https: " + part2);
+
+            Uri uri = Uri.parse("https:" + part2);
             SimpleDraweeView draweeView = activityProfileBinding.imageView;
             draweeView.setImageURI(uri);
+
             dialog.dismiss();
 
         } catch (Exception e) {
@@ -234,14 +233,17 @@ public class ProfileActivity extends AppCompatActivity implements NetworkUtilsRe
             activityProfileBinding.codeBar.setText(String.valueOf(detail.getCodebar()));
             String imageUrl = detail.getImage().toString();
 
-            MyLog.d("IMAGEURL#$#$#$#$#$", imageUrl);
+            String[] parts = imageUrl.split(":");
+            String part1 = parts[0];
+            String part2 = parts[1];
+
+            MyLog.d("IMAGEURL#$#$#$#$#$", "https: " + part2);
+            Uri uri = Uri.parse("https:" + part2);
+            SimpleDraweeView draweeView = activityProfileBinding.imageView;
+            draweeView.setImageURI(uri);
 
             Glide.with(this).load("https://www.rottmair.de/profiles/Sebastian_Rottmair.jpg").into(activityProfileBinding.profileImage);
 
-            Uri uri = Uri.parse("https://webdev.php.mooestro.com/assets/img/james.png");
-            //Uri uri = Uri.parse(imageUrl);
-            SimpleDraweeView draweeView = activityProfileBinding.imageView;
-            draweeView.setImageURI(uri);
             dialog.dismiss();
 
         } catch (Exception e) {

@@ -58,11 +58,11 @@ public class SubjectsListAdapter extends RecyclerView.Adapter<SubjectsListAdapte
             holder.subjectCodeTV.setText(listItemList.get(position).getSubjectCode());
             holder.typeTV.setText(listItemList.get(position).getType());
 
-            if (period.equalsIgnoreCase(listItemList.get(position).getPeriod())){
+            if (period.equalsIgnoreCase(listItemList.get(position).getPeriod())) {
 
                 holder.periodHolder.setVisibility(View.GONE);
 
-            }else {
+            } else {
 
                 holder.periodHolder.setVisibility(View.VISIBLE);
             }
@@ -116,7 +116,7 @@ public class SubjectsListAdapter extends RecyclerView.Adapter<SubjectsListAdapte
             subjectCodeTV = (TextView) view.findViewById(R.id.subjectCodeTV);
             typeTV = (TextView) view.findViewById(R.id.typeTV);
             nextHolder = (RelativeLayout) view.findViewById(R.id.nextHolder);
-            periodHolder = (LinearLayout)view.findViewById(R.id.periodHolder);
+            periodHolder = (LinearLayout) view.findViewById(R.id.periodHolder);
         }
     }
 }

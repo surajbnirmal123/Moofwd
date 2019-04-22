@@ -1,16 +1,6 @@
 package com.macdevelopers.moofwd.Utilities;
 
-import android.app.ActivityManager;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.ImageDecoder;
-import android.graphics.drawable.Animatable;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.util.Patterns;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -19,22 +9,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.controller.BaseControllerListener;
-import com.facebook.drawee.controller.ControllerListener;
-import com.facebook.drawee.drawable.ScalingUtils;
-import com.facebook.drawee.generic.GenericDraweeHierarchy;
-import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
-import com.facebook.drawee.interfaces.DraweeController;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 
 /**
  * Created by Suraj Nirmal
@@ -165,139 +145,5 @@ public class IOUtils {
 
     public interface VolleyCallback {
         void onSuccess(String result);
-    }
-
-    public static boolean isServiceRunning(Class<?> serviceClass, Context context) {
-        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-    }
-
-    /*public static void sendEmail(Context context) {
-
-        try {
-
-            String name = SharedPrefUtil.getUserLogin(context).getResult().get(0).getFname();
-            String mobileNo = SharedPrefUtil.getUserLogin(context).getResult().get(0).getMobile();
-
-            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-            emailIntent.setData(Uri.parse("mailto: contact@motorbuddy.in"));
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Query from " + name + "-" + mobileNo);
-            //emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Add Message here");
-            context.startActivity(Intent.createChooser(emailIntent, "Motor Buddy"));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    public static void callToMobileNo(Context context) {
-
-        try {
-
-            String mobileNo = Constants.getMobileNo;
-
-            Intent callIntent;
-
-            if (!mobileNo.equalsIgnoreCase("")) {
-
-                callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:" + mobileNo));
-                context.startActivity(callIntent);
-
-            } else {
-                Toast.makeText(context, "Mobile no. not available!", Toast.LENGTH_SHORT).show();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /*public void finishAllPreviousActivities(Context context) {
-
-        try {
-
-            Intent intent = new Intent(context, SplashScreenActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            context.startActivity(intent);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    public static String parseDateFormat(String time, String inputPattern, String outputPattern) {
-
-        String str = null;
-
-        if (!time.isEmpty()) {
-            //String inputPattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-            SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
-            inputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-            SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
-            outputFormat.setTimeZone(TimeZone.getDefault());
-
-            Date date = null;
-            // String str = null;
-
-            try {
-                date = inputFormat.parse(time);
-                str = outputFormat.format(date);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            str = "";
-        }
-
-        return str;
-    }
-
-    public static DraweeController getFrescoImageController(Context context, String url/*, final ProgressBar progressBar*/) {
-
-        ControllerListener controllerListener = new BaseControllerListener<ImageDecoder.ImageInfo>() {
-            @Override
-            public void onFinalImageSet(
-                    String id,
-                    @Nullable ImageDecoder.ImageInfo imageInfo,
-                    @Nullable Animatable anim) {
-            }
-
-            @Override
-            public void onIntermediateImageSet(String id, @Nullable ImageDecoder.ImageInfo imageInfo) {
-
-            }
-
-            @Override
-            public void onFailure(String id, Throwable throwable) {
-            }
-        };
-
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setControllerListener(controllerListener)
-                .setUri(url)
-                // other setters
-                .build();
-
-        return controller;
-    }
-
-    public static GenericDraweeHierarchy getFrescoImageHierarchy(Context context) {
-
-        GenericDraweeHierarchyBuilder builder = new GenericDraweeHierarchyBuilder(context.getResources());
-        GenericDraweeHierarchy hierarchy = builder
-                .setActualImageScaleType(ScalingUtils.ScaleType.FIT_XY)
-                .build();
-
-        return hierarchy;
     }
 }

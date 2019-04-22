@@ -208,7 +208,7 @@
                                 style="@style/subject_detail_lectureName"/>
 
                             <LinearLayout
-                                android:layout_width="250dp"
+                                android:layout_width="220dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="10dp"
