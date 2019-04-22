@@ -210,8 +210,6 @@ public class ProfileActivity extends AppCompatActivity implements NetworkUtilsRe
 
             MyLog.d("IMAGEURL#$#$#$#$#$", imageUrl);
 
-            //Glide.with(this).load("https://www.rottmair.de/profiles/Sebastian_Rottmair.jpg").into(activityProfileBinding.profileImage);
-
             Uri uri = Uri.parse("https://webdev.php.mooestro.com/assets/img/james.png");
             //Uri uri = Uri.parse(imageUrl);
             SimpleDraweeView draweeView = activityProfileBinding.imageView;

@@ -1,4 +1,4 @@
-package com.macdevelopers.moofwd.Contacts;
+package com.macdevelopers.moofwd.Subjects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
@@ -19,12 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
-import com.macdevelopers.moofwd.Profile.ProfileActivity;
-import com.macdevelopers.moofwd.Profile.ProfilePOJO;
+import com.macdevelopers.moofwd.Contacts.ContactsActivity;
+import com.macdevelopers.moofwd.Contacts.ContactsListAdapter;
+import com.macdevelopers.moofwd.Contacts.ContactsPOJO;
 import com.macdevelopers.moofwd.R;
 import com.macdevelopers.moofwd.Utilities.Constants;
 import com.macdevelopers.moofwd.Utilities.IOUtils;
@@ -32,20 +31,20 @@ import com.macdevelopers.moofwd.Utilities.MyLog;
 import com.macdevelopers.moofwd.Utilities.Network.NetworkUtils;
 import com.macdevelopers.moofwd.Utilities.Network.NetworkUtilsReceiver;
 import com.macdevelopers.moofwd.databinding.ActivityContactsBinding;
-import com.macdevelopers.moofwd.databinding.ActivityProfileBinding;
+import com.macdevelopers.moofwd.databinding.ActivitySubjectsBinding;
 
 import org.json.JSONObject;
 
-public class ContactsActivity extends AppCompatActivity implements NetworkUtilsReceiver.NetworkResponseInt {
+public class SubjectsActivity extends AppCompatActivity implements NetworkUtilsReceiver.NetworkResponseInt {
 
-    private ActivityContactsBinding activityContactsBinding;
+    private ActivitySubjectsBinding activitySubjectsBinding;
     private String TAG = this.getClass().getSimpleName();
     private NetworkUtilsReceiver networkUtilsReceiver;
     private Gson gson;
     public static TextView valueTV;
-    private ContactsPOJO contactsPOJO;
+    private SubjectsPOJO subjectsPOJO;
     private LinearLayoutManager linearLayoutManager;
-    private ContactsListAdapter contactsListAdapter;
+    private SubjectsListAdapter subjectsListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +52,12 @@ public class ContactsActivity extends AppCompatActivity implements NetworkUtilsR
 
         try {
 
-            activityContactsBinding = DataBindingUtil.setContentView(this, R.layout.activity_contacts);
+            activitySubjectsBinding = DataBindingUtil.setContentView(this, R.layout.activity_subjects);
 
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.contacts);
+            getSupportActionBar().setTitle(R.string.subjects);
 
             //TODO Register receiver
             networkUtilsReceiver = new NetworkUtilsReceiver(this);
@@ -66,17 +65,17 @@ public class ContactsActivity extends AppCompatActivity implements NetworkUtilsR
 
             gson = new Gson();
 
-            linearLayoutManager = new LinearLayoutManager(ContactsActivity.this);
+            linearLayoutManager = new LinearLayoutManager(SubjectsActivity.this);
             linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-            activityContactsBinding.recyclerView.setLayoutManager(linearLayoutManager);
-            activityContactsBinding.recyclerView.setHasFixedSize(true);
+            activitySubjectsBinding.recyclerView.setLayoutManager(linearLayoutManager);
+            activitySubjectsBinding.recyclerView.setHasFixedSize(true);
 
-            activityContactsBinding.pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            activitySubjectsBinding.pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
 
-                    getContactsData();
-                    activityContactsBinding.pullToRefresh.setRefreshing(false);
+                    getSubjectsData();
+                    activitySubjectsBinding.pullToRefresh.setRefreshing(false);
                 }
             });
 
@@ -91,7 +90,7 @@ public class ContactsActivity extends AppCompatActivity implements NetworkUtilsR
 
         try {
 
-            getContactsData();
+            getSubjectsData();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,10 +102,10 @@ public class ContactsActivity extends AppCompatActivity implements NetworkUtilsR
 
         try {
 
-            if (!NetworkUtils.isNetworkConnectionOn(ContactsActivity.this)) {
+            if (!NetworkUtils.isNetworkConnectionOn(SubjectsActivity.this)) {
 
                 Snackbar snackbar = Snackbar
-                        .make(activityContactsBinding.mainRelLayout, getResources().getString(R.string.error_message_no_internet), Snackbar.LENGTH_LONG)
+                        .make(activitySubjectsBinding.mainRelLayout, getResources().getString(R.string.error_message_no_internet), Snackbar.LENGTH_LONG)
                         .setAction(getResources().getString(R.string.settings), new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -128,24 +127,24 @@ public class ContactsActivity extends AppCompatActivity implements NetworkUtilsR
         }
     }
 
-    public void getContactsData() {
+    public void getSubjectsData() {
 
         try {
 
-            activityContactsBinding.progressBar.setVisibility(View.VISIBLE);
+            activitySubjectsBinding.progressBar.setVisibility(View.VISIBLE);
 
-            MyLog.i(TAG + "Link#######", Constants.getContacts);
+            MyLog.i(TAG + "Link#######", Constants.getSubjects);
 
             IOUtils ioUtils = new IOUtils();
 
-            ioUtils.getCommonStringRequest(Constants.GET, TAG, ContactsActivity.this, Constants.getContacts, new IOUtils.VolleyCallback() {
+            ioUtils.getCommonStringRequest(Constants.GET, TAG, SubjectsActivity.this, Constants.getSubjects, new IOUtils.VolleyCallback() {
                 @Override
                 public void onSuccess(String result) {
 
                     try {
 
                         MyLog.i(TAG + "Response#######", result);
-                        getContactsDataResponse(result);
+                        getSubjectsDataResponse(result);
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -163,33 +162,37 @@ public class ContactsActivity extends AppCompatActivity implements NetworkUtilsR
         }
     }
 
-    public void getContactsDataResponse(String response) {
+    public void getSubjectsDataResponse(String response) {
 
         try {
 
-            activityContactsBinding.progressBar.setVisibility(View.GONE);
+            activitySubjectsBinding.progressBar.setVisibility(View.GONE);
             JSONObject jsonObject = new JSONObject(response);
             String status = jsonObject.getString("status");
-            valueTV = new TextView(ContactsActivity.this);
+            valueTV = new TextView(SubjectsActivity.this);
 
             if (status.equalsIgnoreCase("ok")) {
 
-                activityContactsBinding.noDataHolder.setVisibility(View.GONE);
-                activityContactsBinding.dataHolder.setVisibility(View.VISIBLE);
+                activitySubjectsBinding.noDataHolder.setVisibility(View.GONE);
+                activitySubjectsBinding.dataHolder.setVisibility(View.VISIBLE);
 
-                contactsPOJO = gson.fromJson(response, ContactsPOJO.class);
-                contactsListAdapter = new ContactsListAdapter(contactsPOJO.getDetail().getList(), ContactsActivity.this);
-                activityContactsBinding.recyclerView.setAdapter(contactsListAdapter);
-                contactsListAdapter.notifyDataSetChanged();
+                subjectsPOJO = gson.fromJson(response, SubjectsPOJO.class);
+
+                activitySubjectsBinding.nameTV.setText(subjectsPOJO.getDetail().getList().get(0).getCourseName());
+                activitySubjectsBinding.courseNameHolder.setVisibility(View.VISIBLE);
+
+                subjectsListAdapter = new SubjectsListAdapter(subjectsPOJO.getDetail().getList(), SubjectsActivity.this);
+                activitySubjectsBinding.recyclerView.setAdapter(subjectsListAdapter);
+                subjectsListAdapter.notifyDataSetChanged();
 
             } else {
 
-                activityContactsBinding.noDataHolder.setVisibility(View.GONE);
-                activityContactsBinding.dataHolder.setVisibility(View.VISIBLE);
+                activitySubjectsBinding.noDataHolder.setVisibility(View.GONE);
+                activitySubjectsBinding.dataHolder.setVisibility(View.VISIBLE);
                 valueTV.setText(R.string.error_no_record);
                 valueTV.setGravity(Gravity.CENTER);
                 valueTV.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
-                ((RelativeLayout) activityContactsBinding.noDataHolder).addView(valueTV);
+                ((RelativeLayout) activitySubjectsBinding.noDataHolder).addView(valueTV);
             }
 
         } catch (Exception e) {
@@ -213,7 +216,7 @@ public class ContactsActivity extends AppCompatActivity implements NetworkUtilsR
     protected void onDestroy() {
         super.onDestroy();
         try {
-            ContactsActivity.this.unregisterReceiver(networkUtilsReceiver);
+            SubjectsActivity.this.unregisterReceiver(networkUtilsReceiver);
         } catch (Exception e) {
             e.printStackTrace();
         }

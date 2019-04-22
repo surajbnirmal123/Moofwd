@@ -37,6 +37,10 @@
     <color name="golden">#8a6d3b</color>
     <color name="orange">#F5851F</color>
     <color name="gray">#9E9E9E</color>
+    <color name="contact_background">#B258585A</color>
+    <color name="call_dialog_button">#FF007AFF</color>
+    <color name="sem_background">#3358585A</color>
+    <color name="devider_view">#FFCCCCCD</color>
 
     <color name="lightgray1">#F5F5F5</color>
 

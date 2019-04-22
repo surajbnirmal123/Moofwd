@@ -18,12 +18,13 @@ import com.google.android.material.snackbar.Snackbar;
 import com.macdevelopers.moofwd.Contacts.ContactsActivity;
 import com.macdevelopers.moofwd.Profile.ProfileActivity;
 import com.macdevelopers.moofwd.R;
+import com.macdevelopers.moofwd.Subjects.SubjectsActivity;
 import com.macdevelopers.moofwd.Utilities.Network.NetworkUtils;
 import com.macdevelopers.moofwd.Utilities.Network.NetworkUtilsReceiver;
 import com.macdevelopers.moofwd.Welcome.WelcomeActivity;
 import com.macdevelopers.moofwd.databinding.ActivityDashboardBinding;
 
-public class DashboardActivity extends AppCompatActivity implements NetworkUtilsReceiver.NetworkResponseInt{
+public class DashboardActivity extends AppCompatActivity implements NetworkUtilsReceiver.NetworkResponseInt {
 
     ActivityDashboardBinding activityDashboardBinding;
     private NetworkUtilsReceiver networkUtilsReceiver;
@@ -56,7 +57,7 @@ public class DashboardActivity extends AppCompatActivity implements NetworkUtils
             activityDashboardBinding.subjects.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(DashboardActivity.this, DashboardActivity.class);
+                    Intent intent = new Intent(DashboardActivity.this, SubjectsActivity.class);
                     startActivity(intent);
                 }
             });

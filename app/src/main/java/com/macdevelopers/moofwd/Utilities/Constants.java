@@ -28,6 +28,9 @@ public interface Constants {
     //TODO getContacts
     String getContacts = "http://54.94.179.75:3000/moofwd/contacts";
 
+    //TODO getSubjects
+    String getSubjects = "http://54.94.179.75:3000/moofwd/subjects/james@moofwd.com";
+
     //TODO getMobileNo
     String getMobileNo = "+919665997663";
 
