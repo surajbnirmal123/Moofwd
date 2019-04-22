@@ -51,12 +51,7 @@
             android:name=".Welcome.WelcomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.gun0912.tedpermission.TedPermissionActivity"
-            android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|screenLayout|fontScale|uiMode|orientation|screenSize|layoutDirection"
-            android:screenOrientation="unspecified"
-            android:theme="@style/Theme.Transparent.Permission"
-            tools:replace="android:screenOrientation" />
+
         <activity
             android:name=".SplashScreen.SplashScreenActivity"
             android:screenOrientation="portrait"
